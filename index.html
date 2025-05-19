@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue - Poly Électronique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Style pour s'assurer que le corps prend toute la hauteur et pour centrer le contenu */
+        body {
+            font-family: 'Inter', sans-serif; /* Police par défaut suggérée */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 md:p-12 rounded-lg shadow-xl text-center max-w-md mx-auto">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+            Bienvenue au Système Poly Électronique
+        </h1>
+
+        <p class="text-gray-600 mb-8 text-lg">
+            Nous sommes ravis de vous accueillir. Cliquez sur le bouton ci-dessous pour accéder à la plateforme.
+        </p>
+
+        <a href="http://polyabir.s3-website.eu-north-1.amazonaws.com/" id="accessButton" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out inline-block text-lg">
+            Accéder au Système
+        </a>
+
+        <div id="messageBox" class="mt-6 p-4 rounded-md text-sm" role="alert" aria-live="assertive">
+            </div>
+    </div>
+
+    <script>
+        // Script pour gérer le clic sur le bouton
+        const accessButton = document.getElementById('accessButton');
+        const messageBox = document.getElementById('messageBox');
+
+        accessButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Empêche le comportement par défaut du lien pour afficher le message
+
+            // Affiche un message de chargement ou de redirection
+            messageBox.innerHTML = `
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md relative" role="alert">
+                    <strong class="font-bold">Redirection en cours...</strong>
+                    <span class="block sm:inline">Vous allez être redirigé vers ${this.href}.</span>
+                </div>
+            `;
+            messageBox.className = 'mt-6 p-4 rounded-md text-sm'; // Réinitialise les classes pour le style
+
+            // Redirige vers l'URL du système après un court délai
+            setTimeout(() => {
+                window.location.href = this.href; // Utilise l'URL du lien
+            }, 2000); // Délai de 2 secondes
+        });
+    </script>
+</body>
+</html>
